@@ -1,0 +1,7 @@
+# Directories #
+###############
+gh-pages/
+
+# OS generated files #
+######################
+.DS_Store*
