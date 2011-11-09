@@ -6,4 +6,4 @@ A repository to house all the <abbr title="proof of concept">POC</abbr>'s, tests
 
 * [Mimicking Links](https://github.com/ryanfitzer/Demos/tree/master/mimic-links)  
     
-    Various configurations of element attributes and/or non-anchor elements to mimic the look (styling) and functionality (mouse & keyboard) of standard links. I originally created this based on a post of mine, [To Be, or Not to Be, an Anchor](http://ryanfitzer.org/2011/08/to-be-or-not-to-be-an-anchor/). Definitely not an exhaustive list, but a great starting point. Any forks and pull requests are appreciated.
+    Various configurations of element attributes and/or non-anchor elements to mimic the look (styling) and functionality (mouse & keyboard) of standard links. I originally created this based on a post of mine, [To Be, or Not to Be, an Anchor](http://ryanfitzer.org/2011/08/to-be-or-not-to-be-an-anchor/). Definitely not an exhaustive list, but a great starting point. Any forks and pull requests are appreciated. [View the rendered page](http://ryanfitzer.github.com/Demos/mimic-links/)
