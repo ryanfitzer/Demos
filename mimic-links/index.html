@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js ie6 ie" lang="en"><![endif]-->
+<!--[if IE 7]>   <html class="no-js ie7 ie" lang="en"><![endif]-->
+<!--[if IE 8]>   <html class="no-js ie8 ie" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Mimicking Links</title>
+  <style type="text/css" media="screen">
+  
+    /*
+      .text {
+          overflow:visible;
+          margin:0;
+          padding:0;
+          border:0;
+          color:#8f1f08;
+          background:transparent;
+          font:inherit;
+          line-height:normal;
+          text-decoration:underline;
+          cursor:pointer;
+          -moz-user-select:text;
+      }
+      .text:hover,
+      .text:focus {
+          color:#800000;
+          background-color:#e3e0d1;
+      }
+      .text::-moz-focus-inner {
+          padding:0;
+          border:0;
+      }
+    */
+    body {
+      font-size:16px;
+      line-height:1.5;
+      padding:0 80px 50px;
+      font-family:Helvetica;
+    }
+    h1 {
+      margin:30px 0 50px -28px;
+    }
+    hr {
+      margin:60px 0;
+    }
+    
+    /* Hyperlinks */
+    #link,
+    #inline a,
+    #block .link,
+    #inline button {
+      margin:0;
+      padding:0;
+      width:auto;
+      color:blue;
+      height:auto;
+      border:none;
+      font-size:16px;
+      cursor:pointer;
+      background:none;
+      text-align:left;
+      font-weight:normal;
+      text-decoration:none;
+      font-family:Helvetica;
+    }
+    #inline button {
+      overflow:visible;
+    }
+    .ie7 #inline button {
+      line-height:18px;
+      vertical-align:middle;
+    }
+    .ie6 html #inline button {
+      vertical-align:middle;
+    }
+    #link:hover,
+    #block .link:hover,
+    #inline a:hover {
+      color:red;
+      text-decoration:underline;
+    }
+    #link:focus,
+    #link:active,
+    #block .link:focus,
+    #block .link:active,
+    #inline a:focus,
+    #inline a:active {
+      color:red;
+      text-decoration:none;
+      outline:1px dotted red;
+    }
+    #inline button::-moz-focus-inner {
+      padding:0;
+      border:none;
+    }
+    #inline button:hover span {
+      color:red;
+      text-decoration:underline;
+    }
+    #inline button:focus,
+    #inline button:active {
+    	outline:none;
+    }
+    #inline button:focus span {
+      color:red;
+      text-decoration:none;
+      outline:1px dotted red;
+    }
+    
+    /*
+    STANDALONE
+    -----------------------*/
+    
+    #standalone a,
+    #standalone span,
+    #standalone button,
+    #standalone input {
+      font-family:monospace;
+    }
+    
+    /* Anchors */
+    #standalone a {
+      margin:0;
+      padding:0;
+      color:blue;
+      cursor:pointer;
+      font-size:16px;
+      text-decoration:none;
+    }
+    #standalone a:hover,
+    #standalone a:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+    /* Spans */
+    #standalone span {
+       margin:0;
+       padding:0;
+       color:blue;
+       cursor:pointer;
+       font-size:16px;
+       text-decoration:none;
+    }
+    #standalone span:hover,
+    #standalone span:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+    /* Buttons */
+    #standalone button[type=button] {
+      margin:0;
+      padding:0;
+      color:blue;
+      width:auto;
+      border:none;
+      height:auto;
+      cursor:pointer;
+      font-size:16px;
+      overflow:visible;
+      line-height:normal;
+      text-decoration:none;
+      background:transparent;
+    }
+    #standalone button[type=button]:hover,
+    #standalone button[type=button]:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+    #standalone button[type=submit] {
+      margin:0;
+      padding:0;
+      color:blue;
+      width:auto;
+      border:none;
+      height:auto;
+      cursor:pointer;
+      font-size:16px;
+      overflow:visible;
+      line-height:normal;
+      text-decoration:none;
+      background:transparent;
+    }
+    #standalone button[type=submit]:hover,
+    #standalone button[type=submit]:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+    /* Inputs */
+    #standalone input[type=button] {
+      margin:0;
+      padding:0;
+      color:blue;
+      width:auto;
+      border:none;
+      height:auto;
+      cursor:pointer;
+      font-size:16px;
+      overflow:visible;
+      line-height:normal;
+      text-decoration:none;
+      background:transparent;
+    }
+    #standalone input[type=button]:hover,
+    #standalone input[type=button]:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+    #standalone input[type=submit] {
+      margin:0;
+      padding:0;
+      color:blue;
+      width:auto;
+      border:none;
+      height:auto;
+      cursor:pointer;
+      font-size:16px;
+      overflow:visible;
+      line-height:normal;
+      text-decoration:none;
+      background:transparent;
+    }
+    #standalone input[type=submit]:hover,
+    #standalone input[type=submit]:focus {
+      color:red;
+      text-decoration:underline;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h1>Mimicking Links</h1>
+  
+  <div id="inline">
+    <h2>Inline</h2>
+    <p>Lorem ipsum <a title="anchor element" href="#anchor">anchor-1</a> dolor sit amet, <a title="anchor element" href="http://google.com">anchor-2</a>. Consectetur adipisicing elit, sed do  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim <button title="button element" type="button" value="hyperlink button"><span>this is a <strong>button</strong> element</span></button> id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt <span id="link" role="link" tabindex="0">this is a <strong>span</strong> element</span> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum <button title="button element" type="button" value="hyperlink button"><span>&lt;button title=&quot;button element&quot; type=&quot;button&quot; value=&quot;hyperlink button&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/button&gt;</span></button>.</p>
+  </div>
+  
+  <div id="standalone">
+    <h2>Standalone</h2>
+    <p><a class="anchor-1" title="anchor element" href="#anchor">&lt;a class=&quot;anchor-1&quot; title=&quot;anchor element&quot; href=&quot;#anchor&quot;&gt;</a></p>
+    <p><a class="anchor-2" title="anchor element" href="http://google.com">&lt;a class=&quot;anchor-2&quot; title=&quot;anchor element&quot; href=&quot;http://google.com&quot;&gt;</a></p>
+    <p><a class="anchor-3" title="anchor element" role="link">&lt;a class=&quot;anchor-3&quot; title=&quot;anchor element&quot; role=&quot;link&quot;&gt;</a></p>
+    <p><a class="anchor-4" title="anchor element" tabindex="0">&lt;a class=&quot;anchor-4&quot; title=&quot;anchor element&quot; tabindex=&quot;0&quot;&gt;</a></p>
+    <p><a class="anchor-5" title="anchor element" role="link" tabindex="0">&lt;a class=&quot;anchor-5&quot; title=&quot;anchor element&quot; role=&quot;link&quot; tabindex=&quot;0&quot;&gt;</a></p>
+    
+    <br/>
+    
+    <p><span class="span-1" title="span element" role="link">&lt;span class=&quot;span-1&quot; title=&quot;span element&quot; role=&quot;link&quot;&gt;</span></p>
+    <p><span class="span-2" title="span element" tabindex="0">&lt;span class=&quot;span-2&quot; title=&quot;span element&quot; tabindex=&quot;0&quot;&gt;</span></p>
+    <p><span class="span-3" title="span element" role="link" tabindex="0">&lt;span class=&quot;span-3&quot; title=&quot;span element&quot; role=&quot;link&quot; tabindex=&quot;0&quot;&gt;</span></p>
+    
+    <br/>
+    
+    <p><button class="button-1" title="button element" type="button">&lt;button class=&quot;button-1&quot; title=&quot;button element&quot; type=&quot;button&quot;&gt;</button></p>
+    <p><button class="button-2" title="button element" type="button" role="link">&lt;button class=&quot;button-2&quot; title=&quot;button element&quot; type=&quot;button&quot; role=&quot;link&quot;&gt;</button></p>
+    <p><button class="button-3" title="button element" type="submit">&lt;button class=&quot;button-3&quot; title=&quot;button element&quot; type=&quot;submit&quot;&gt;</button></p>
+    <p><button class="button-4" title="button element" type="submit" role="link">&lt;button class=&quot;button-4&quot; title=&quot;button element&quot; type=&quot;submit&quot; role=&quot;link&quot;&gt;</button></p>
+    
+    <br/>
+    
+    <p><input class="input-1" title="input element" type="button" value="&lt;input class=&quot;input-1&quot; title=&quot;input element&quot; type=&quot;button&quot; value=&quot;&quot;/&gt;"/></p>
+    <p><input class="input-2" title="input element" type="submit" value="&lt;input class=&quot;input-1&quot; title=&quot;input element&quot; type=&quot;submit&quot; value=&quot;&quot;/&gt;"/></p>
+  
+  </div>
+  
+</body>
+</html>
