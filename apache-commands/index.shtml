@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Apache</title>
+    <style type="text/css" media="screen">
+      body > h1 {
+        margin:0 0 60px;
+      }
+      em {
+        color:green;
+        font-weight:bold;
+      }
+      section {
+        margin:0 0 30px;
+        padding:0 30px 30px;
+        border-bottom:1px dotted #ccc;
+      }
+    </style>
+  </head>
+<body>
+  
+  <h1>Apache SSI Elements</h1>
+  
+  <section>
+    <h1>Include files</h1>
+    <p>Code</p>
+    <pre>
+      &lt;!--#include file=&quot;inc.shtml&quot; --&gt;
+    </pre>
+    <p>Result</p>
+    <p><em><!--#include file="inc.shtml" --></em></p>
+  </section>
+  
+  <section>
+    <h1>Set and Echo Custom Variables</h1>
+    <p>Code</p>
+    <pre>
+      &lt;!--#set var=&quot;first_name&quot; value=&quot;Ryan&quot; --&gt;
+      &lt;!--#set var=&quot;last_name&quot; value=&quot;Fitzer&quot; --&gt;
+      &lt;p&gt;My name name is &lt;!--#echo var=&quot;first_name&quot; --&gt; &lt;!--#echo var=&quot;last_name&quot; --&gt;&lt;/p&gt;
+    </pre>
+    <p>Result</p>
+    <!--#set var="first_name" value="Ryan" -->
+    <!--#set var="last_name" value="Fitzer" -->
+    <p>My name name is <em><!--#echo var="first_name" --></em> <em><!--#echo var="last_name" --></em></p>
+  </section>
+  
+  <section>
+    <h1>Execute shell commands</h1>
+    <p>Code</p>
+    <pre>
+      &lt;!--#exec cmd=&quot;ls&quot; --&gt;
+    </pre>
+    <p>Result</p>
+    <p><em><!--#exec cmd="ls" --></em></p>
+  </section>
+  
+  <section>
+    <h1>File info</h1>
+    <p>Code</p>
+    <pre>
+      &lt;!--#config timefmt=&quot;%A %B %d, %Y&quot; --&gt;
+      This file last modified &lt;!--#flastmod file=&quot;index.shtml&quot; --&gt;
+    </pre>
+    <p>Result</p>
+    <!--#config timefmt="%A %B %d, %Y" -->
+    <p>This file last modified <em><!--#flastmod file="index.shtml" --></em></p>
+  </section>
+  
+  <section>
+    <h1>Environmental Variables</h1>
+    <pre><!--#printenv --></pre>
+  </section>
+  
+</body>
+</html>
