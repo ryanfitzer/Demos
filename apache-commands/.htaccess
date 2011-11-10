@@ -1,1 +1,23 @@
+# ------------------------------------------------------#
+# The following must be configured in your              #
+# httpd.conf file to allow for per directory override.  #
+# ------------------------------------------------------#
 
+# AllowOverride controls what directives may be placed in .htaccess files.
+# It can be "All", "None", or any combination of the keywords: Options FileInfo AuthConfig Limit
+# http://httpd.apache.org/docs/2.2/mod/core.html
+# Example:
+# AllowOverride All
+
+
+# --------------------------------------#
+# The directives below alter only       #
+# the directory where this file exists. #
+# --------------------------------------#
+
+# Enable files with the ".shtml" extention to be parsed for includes
+<FilesMatch "\.shtml$">
+     Options +Includes
+     AddOutputFilterByType INCLUDES text/html
+     SetOutputFilter INCLUDES
+</FilesMatch>
