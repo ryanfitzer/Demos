@@ -69,7 +69,7 @@
 
 <script>
 
-	var hoverSedate = function( element, options ) {
+	var HoverSedate = function( element, options ) {
 		
 		this.element = element;
 		this.options = options || {};
@@ -79,11 +79,11 @@
 		
 		this.init();
 		
-		return this.options;
+		return this;
 		
 	};
 
-	hoverSedate.prototype = {
+	HoverSedate.prototype = {
 		
 		open: false,
 		
@@ -152,7 +152,7 @@
 		
 	var
 		element = document.querySelector( '#nav li' ),
-		demo = new hoverSedate( element, {
+		demo = new HoverSedate( element, {
 			delayEnter: 350,
 			delayLeave: 350
 		});
