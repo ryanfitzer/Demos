@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Control Hover Intention</title>
+	<style type="text/css">
+		body {
+			width:500px;
+			margin:0 auto;
+		}
+		ul {
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		code {
+			background:#ffff8f;
+		}
+		#nav {
+			margin:30px auto 0;
+			display:inline-block;
+		}
+		#nav ul {
+			display:none;
+		}
+		#nav > li {
+			padding:10px;
+			background:#ff8f66;
+			border:1px solid #ccc;
+		}
+		#nav > li.closed {
+			cursor:pointer;
+		}
+		#nav span {
+			cursor:pointer;
+		}
+		
+	</style>
+</head>
+<body>
+
+<h1>Control Hover Intention</h1>
+
+<p>Demonstration of how to manage unintended displays when a user casually uses their mouse to glance around an interface.</p>
+
+<p>The two options are in milliseconds: <code>delayEnter</code> and <code>delayLeave</code>. If a user does not hover out of the element before the <code>delayEnter</code> value passes, then the element is shown. If the element is open and the user moves their mouse outside of the active area longer than the <code>delayLeave</code> value, the element is hidden.</p>
+
+<p>You can play around with the <code>delayEnter</code> and <code>delayLeave</code> values in the console via the demo object. It is currently set to:</p>
+
+<p>
+<code>demo.delayEnter = 350</code>
+<br/>
+<code>demo.delayLeave = 350</code>
+</p>
+
+<p><small><i>NOTE: This demo requires a modern browser. To illustrate the idea as simply as possible, no cross-browser code was included.</i></small></p>
+
+<ul id="nav">
+	<li class="closed">Hover Over Me
+		<ul>
+			<li><a href="#">One</a></li>
+			<li><a href="#">Two</a></li>
+			<li><a href="#">Three</a></li>
+			<li><a href="#">Four</a></li>
+		</ul>
+	</li>
+</ul>
+
+<script>
+
+	var hoverSedate = function( element, options ) {
+		
+		this.element = element;
+		this.options = options || {};
+		this.children = element.children;
+		this.options.delayEnter = this.options.delayEnter || 500;
+		this.options.delayLeave = this.options.delayLeave || 500;
+		
+		this.init();
+		
+		return this.options;
+		
+	};
+
+	hoverSedate.prototype = {
+		
+		open: false,
+		
+		init: function() {
+			
+			var
+				timerEnter,
+				timerLeave,
+				self = this,
+				element = self.element;
+			
+			this.element.addEventListener( 'mouseover', function( e ) {
+				
+				clearTimeout(timerLeave);
+				
+				timerEnter = setTimeout( function() {
+					
+					if ( !self.open ) self.show();
+					
+				}, self.options.delayEnter );
+				
+				
+			});
+			
+			this.element.addEventListener( 'mouseout', function( e ) {
+				
+				clearTimeout( timerEnter );
+				
+				timerLeave = setTimeout( function() {
+					
+					if ( self.open ) self.hide();
+					
+				}, self.options.delayLeave );
+				
+				
+			});
+					
+		},
+		
+		show: function() {
+			
+			this.open = true;
+			this.display( 'block' );
+			this.element.className = 'open';
+		},
+		
+		hide: function() {
+			
+			this.open = false;
+			this.display( 'none' );
+			this.element.className = 'closed';
+		},
+		
+		display: function( state ) {
+			
+			var
+				i = 0,
+				children = this.element.children,
+				len = children.length;
+			
+			for ( ; i < len; i++ ) children[i].style.display = state;
+			
+		}
+		
+	};
+		
+	var
+		element = document.querySelector( '#nav li' ),
+		demo = new hoverSedate( element, {
+			delayEnter: 350,
+			delayLeave: 350
+		});
+
+</script>
+
+</body>
+</html>
