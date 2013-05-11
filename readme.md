@@ -2,13 +2,6 @@
 
 A repository to house all the <abbr title="proof of concept">POC</abbr>'s, tests and demos I create.
 
-## Index ##
-
-* [Apache Commands](#apache-commands)
-* [Control Hover Intention](#hover)
-* [Mimicking Links](#mimic-links)
-
-
 ### Apache Commands ###
 
 Examples of some apache commands I find helpful during development. Instructions are contained in the .htaccess file included. A functioning example is not available due to github pages lack of support for apache. You'll need to run this in your own environment.
