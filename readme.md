@@ -1,6 +1,6 @@
 # About #
 
-A repository to house all the <abbr title="proof of concept">POC</abbr>'s, tests and demos I create.
+A repository to house all the POC's, tests and demos I create.
 
 ### Apache Commands ###
 
