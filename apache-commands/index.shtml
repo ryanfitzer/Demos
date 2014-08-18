@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Apache</title>
-    <style type="text/css" media="screen">
+    <title>Apache SSI Elements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
       body > h1 {
         margin:0 0 60px;
       }
@@ -19,60 +20,129 @@
     </style>
   </head>
 <body>
-  <a href="https://github.com/ryanfitzer/Demos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
-  
+
   <h1>Apache SSI Elements</h1>
-  
+
   <section>
     <h1>Include files</h1>
+
+    <p>There are 2 methods available: <code>file</code> and <code>virtual</code>.</p>
+
     <p>Code</p>
     <pre>
-      &lt;!--#include file=&quot;inc.shtml&quot; --&gt;
+      &lt;!--#include file=&quot;include.html&quot; --&gt;
+      &lt;!--#include virtual=&quot;../apache-commands/include.html&quot; --&gt;
     </pre>
+
     <p>Result</p>
-    <p><em><!--#include file="inc.shtml" --></em></p>
+    <p>Using <code>file</code>: <em><!--#include file="include.html" --></em></p>
+    <p>Using <code>virtual</code>: <em><!--#include virtual="../apache-commands/include.html" --></em></p>
   </section>
-  
+
   <section>
-    <h1>Set and Echo Custom Variables</h1>
+    <h1>Set Custom Variables in .htaccess and Echo</h1>
+
+    <p>Code in .htaccess</p>
+    <pre>
+      SetEnv custom_htaccess_var "I was set in the .htaccess file."
+    </pre>
+
+    <p>Code in page</p>
+    <pre>
+      &lt;!--#echo var=&quot;custom_htaccess_var&quot; --&gt;
+    </pre>
+
+    <p>Result</p>
+    <p><code>custom_htaccess_var</code>: <em><!--#echo var="custom_htaccess_var" --></em></p>
+  </section>
+
+  <section>
+    <h1>Set Custom Variables in the Page and Echo</h1>
+
+    <!--#set var="custom_first_name" value="Ryan" -->
+    <!--#set var="custom_last_name" value="Fitzer" -->
+
     <p>Code</p>
     <pre>
-      &lt;!--#set var=&quot;first_name&quot; value=&quot;Ryan&quot; --&gt;
-      &lt;!--#set var=&quot;last_name&quot; value=&quot;Fitzer&quot; --&gt;
-      &lt;p&gt;My name name is &lt;!--#echo var=&quot;first_name&quot; --&gt; &lt;!--#echo var=&quot;last_name&quot; --&gt;&lt;/p&gt;
+      &lt;!--#set var=&quot;custom_first_name&quot; value=&quot;Ryan&quot; --&gt;
+      &lt;!--#set var=&quot;custom_last_name&quot; value=&quot;Fitzer&quot; --&gt;
     </pre>
+
     <p>Result</p>
-    <!--#set var="first_name" value="Ryan" -->
-    <!--#set var="last_name" value="Fitzer" -->
-    <p>My name name is <em><!--#echo var="first_name" --></em> <em><!--#echo var="last_name" --></em></p>
+    <p><code>custom_first_name</code>: <em><!--#echo var="custom_first_name" --></em></p>
+    <p><code>custom_last_name</code>: <em><!--#echo var="custom_last_name" --></em></p>
   </section>
-  
+
   <section>
-    <h1>Execute shell commands</h1>
+    <h1>Conditionally Set Variables with If/Else Statement</h1>
+
+    <p>Using this <a href="?custom_query=success">url</a> will set the following variable to "success"</p>
+
+    <!--#if expr='$QUERY_STRING_UNESCAPED = /.*custom_query=(.*)/' -->
+
+        <!--#set var="custom_query" value="$1" -->
+
+    <!--#else -->
+
+        <!--#set var="custom_query" value="No \"custom_query\" parameter found in url." -->
+
+    <!--#endif -->
+
+    <p>Code</p>
+    <pre>
+      &lt;!--#if expr=&#x27;$QUERY_STRING_UNESCAPED = /.*custom_query=(.*)/&#x27; --&gt;
+
+          &lt;!--#set var=&quot;custom_query&quot; value=&quot;$1&quot; --&gt;
+
+      &lt;!--#else --&gt;
+
+          &lt;!--#set var=&quot;custom_query&quot; value=&quot;No \&quot;query\&quot; parameter found in url.&quot; --&gt;
+
+      &lt;!--#endif --&gt;
+    </pre>
+
+    <p>Result</p>
+    <p><code>custom_query</code>: <em><!--#echo var="custom_query" --></em></p>
+  </section>
+
+  <section>
+    <h1>Execute Shell Commands</h1>
+
     <p>Code</p>
     <pre>
       &lt;!--#exec cmd=&quot;ls&quot; --&gt;
     </pre>
+
     <p>Result</p>
     <p><em><!--#exec cmd="ls" --></em></p>
   </section>
-  
+
   <section>
-    <h1>File info</h1>
+    <h1>Display File Info</h1>
+
+    <!--#config timefmt="%A %B %d, %Y" -->
+
     <p>Code</p>
     <pre>
       &lt;!--#config timefmt=&quot;%A %B %d, %Y&quot; --&gt;
       This file last modified &lt;!--#flastmod file=&quot;index.shtml&quot; --&gt;
     </pre>
+
     <p>Result</p>
-    <!--#config timefmt="%A %B %d, %Y" -->
     <p>This file last modified <em><!--#flastmod file="index.shtml" --></em></p>
   </section>
-  
+
   <section>
-    <h1>Environmental Variables</h1>
+    <h1>Display Environment Variables</h1>
+
+    <p>Code</p>
+    <pre>
+      &lt;!--#printenv --&gt;
+    </pre>
+
+    <p>Result</p>
     <pre><!--#printenv --></pre>
   </section>
-  
+
 </body>
 </html>
