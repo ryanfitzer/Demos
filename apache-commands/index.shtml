@@ -96,7 +96,7 @@
 
       &lt;!--#else --&gt;
 
-          &lt;!--#set var=&quot;custom_query&quot; value=&quot;No \&quot;query\&quot; parameter found in url.&quot; --&gt;
+          &lt;!--#set var=&quot;custom_query&quot; value=&quot;No \&quot;custom_query\&quot; parameter found in url.&quot; --&gt;
 
       &lt;!--#endif --&gt;
     </pre>
@@ -110,11 +110,11 @@
 
     <p>Code</p>
     <pre>
-      &lt;!--#exec cmd=&quot;ls&quot; --&gt;
+      &lt;!--#exec cmd=&quot;ls -a&quot; --&gt;
     </pre>
 
     <p>Result</p>
-    <p><em><!--#exec cmd="ls" --></em></p>
+    <p><em><!--#exec cmd="ls -a" --></em></p>
   </section>
 
   <section>
