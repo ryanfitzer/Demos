@@ -10,11 +10,14 @@
 
 # AllowOverride All
 
+# Allow index.shtml as default directory indexes
+DirectoryIndex index.shtml index.html
 
 # --------------------------------------#
 # The directives below alter only       #
 # the directory where this file exists. #
 # --------------------------------------#
+
 
 # Enable files with the ".shtml" extention to be parsed for includes
 <FilesMatch "\.shtml$">
@@ -22,3 +25,6 @@
     AddOutputFilterByType INCLUDES text/html
     SetOutputFilter INCLUDES
 </FilesMatch>
+
+# Set a variable
+SetEnv custom_htaccess_var "I was set in the .htaccess file."

@@ -38,8 +38,6 @@
 </head>
 <body>
 
-<a href="https://github.com/ryanfitzer/Demos"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
-
 <h1>Control Hover Intention</h1>
 
 <p>Demonstration of how to manage unintended displays when a user casually uses their mouse to glance around an interface.</p>
@@ -70,86 +68,86 @@
 <script>
 
 	var HoverSedate = function( element, options ) {
-		
+
 		this.element = element;
 		this.options = options || {};
 		this.children = element.children;
 		this.options.delayEnter = this.options.delayEnter || 500;
 		this.options.delayLeave = this.options.delayLeave || 500;
-		
+
 		this.init();
-		
+
 		return this;
-		
+
 	};
 
 	HoverSedate.prototype = {
-		
+
 		open: false,
-		
+
 		init: function() {
-			
+
 			var
 				timerEnter,
 				timerLeave,
 				self = this,
 				element = self.element;
-			
+
 			this.element.addEventListener( 'mouseover', function( e ) {
-				
+
 				clearTimeout(timerLeave);
-				
+
 				timerEnter = setTimeout( function() {
-					
+
 					if ( !self.open ) self.show();
-					
+
 				}, self.options.delayEnter );
-				
-				
+
+
 			});
-			
+
 			this.element.addEventListener( 'mouseout', function( e ) {
-				
+
 				clearTimeout( timerEnter );
-				
+
 				timerLeave = setTimeout( function() {
-					
+
 					if ( self.open ) self.hide();
-					
+
 				}, self.options.delayLeave );
-				
-				
+
+
 			});
-					
+
 		},
-		
+
 		show: function() {
-			
+
 			this.open = true;
 			this.display( 'block' );
 			this.element.className = 'open';
 		},
-		
+
 		hide: function() {
-			
+
 			this.open = false;
 			this.display( 'none' );
 			this.element.className = 'closed';
 		},
-		
+
 		display: function( state ) {
-			
+
 			var
 				i = 0,
 				children = this.element.children,
 				len = children.length;
-			
+
 			for ( ; i < len; i++ ) children[i].style.display = state;
-			
+
 		}
-		
+
 	};
-		
+
 	var
 		element = document.querySelector( '#nav li' ),
 		demo = new HoverSedate( element, {
